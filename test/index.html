@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hover-Time test</title>
+
+    <style>
+        .testBox {
+            float: left;
+            height: 150px;
+            width: 150px;
+            margin: 10px;
+            position: relative;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test1" class="testBox"></div>
+    <div id="test3" class="testBox"></div>
+    <div id="test4" class="testBox"></div>
+    <div id="test6" class="testBox clases"></div>
+    <div id="test7" class="testBox clases"></div>
+    <div id="test9" class="testBox clases"></div>
+
+    <button onclick="removefromlast()">Remove from the last</button>
+
+
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="../src/jquery.hover-time.js"></script>
+    <script>
+        // use 1
+        $.hoverTime(['.clases', '#test3'], {
+            time: 2 * 1000,
+            callback: function () {
+                $(this).css('border-width', "9px");
+            }
+        });
+
+        // with event listener
+        $('.clases').on('hover-time', function (e) {
+            $(this).css('background-color', 'red');
+        });
+
+        // use 2
+        $("#test4").hoverTime({
+            callback: function () {
+                $(this).css('background-color', 'blue');
+            }
+        });
+
+        $('#test1').hoverTime(function () {
+            $(this).append("this was with just a function as paramether ");
+        });
+
+
+
+
+        function removefromlast() {
+            $('#test9').hoverTime('remove');
+        };
+    </script>
+</body>
+
+</html>
